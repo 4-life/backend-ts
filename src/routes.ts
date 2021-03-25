@@ -64,7 +64,7 @@ export class Routes {
      *       data: {user data}
      *    }
      */
-    app.get('/profile', (req: Request, res: Response) => this.userController.getUserProfile(req, res));
+    app.get('/profile', this.auth, (req: Request, res: Response) => this.userController.getUserProfile(req, res));
 
     /**
      * @api {post} /contacts

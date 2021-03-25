@@ -121,7 +121,7 @@ describe('Auth', () => {
       request(server)
         .post('/login')
         .send({ username: 'user', password: '1234' })
-        .end((err, res) => {
+        .end((_, res) => {
           expect(res.status).is.equal(401);
           expect(res.body).be.a('Object');
           expect(res.body.message).is.equal('Wrong credentials!');
