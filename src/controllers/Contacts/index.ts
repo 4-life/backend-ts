@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ContactWithId, Contact } from './types';
 import { Messages, DbError, ERR } from '../../types/Utils';
+import { validateIdentify } from './utils';
 
 const model = require('../../models/index');
 
@@ -25,9 +26,17 @@ export class ContactsController {
 
   public createContact = async (req: Request, res: Response) => {
     const { identify, name } = req.body as Contact;
+    const trimmedIdentify = identify.trim();
+
+    if (!validateIdentify(trimmedIdentify)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Invalid identify',
+      });
+    }
 
     const existing: ContactWithId = await model.Contact.findOne({
-      where: { identify }
+      where: { identify: trimmedIdentify }
     });
 
     if (existing?.id) {
@@ -39,7 +48,7 @@ export class ContactsController {
     }
 
     const created: ContactWithId | DbError = await model.Contact.create({
-      identify, name
+      identify: trimmedIdentify, name
     }).catch(error => ({ error }));
 
     if (ERR in created) {
@@ -76,7 +85,7 @@ export class ContactsController {
       where: { identify }
     });
 
-    // TODO: return updated data from update request
+    // TODO: return updated data from SQL-request
     const contactUpdated: ContactWithId = await model.Contact.findOne({
       where: { identify }
     }).catch(error => ({ error }));
