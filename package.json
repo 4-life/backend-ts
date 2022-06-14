@@ -1,7 +1,7 @@
 {
-  "name": "coding-challenge",
+  "name": "user-auth-api",
   "version": "1.0.0",
-  "description": "Reustle.co coding challenge",
+  "description": "The example of simple user auth API",
   "main": "index.js",
   "scripts": {
     "build": "tsc && cp -R ./src/models ./dist/ && cp -R ./src/config ./dist/",
@@ -11,7 +11,7 @@
     "test": "mocha --exit -r ts-node/register src/tests/auth.test.ts src/tests/crud.test.ts",
     "unit-test": "mocha --exit -r ts-node/register src/tests/unit.test.ts"
   },
-  "author": "",
+  "author": "4-life",
   "license": "ISC",
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
