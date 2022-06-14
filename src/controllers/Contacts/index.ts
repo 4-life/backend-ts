@@ -77,7 +77,7 @@ export class ContactsController {
     if (!contact) {
       return res.status(404).send({
         success: false,
-        message: 'Contact is not found!',
+        message: 'Contact not found!',
       });
     }
 

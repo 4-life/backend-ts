@@ -69,7 +69,7 @@ describe('CRUD', () => {
           done();
         });
     });
-    it(`Contact is not found`, (done) => {
+    it(`Contact not found`, (done) => {
       request(server)
         .put('/contacts/another-contact')
         .send({ name: 'Jack' })
@@ -77,7 +77,7 @@ describe('CRUD', () => {
           expect(res.body).be.a('Object');
           expect(res.status).is.equal(404);
           expect(res.body.success).is.false;
-          expect(res.body.message).is.equal('Contact is not found!');
+          expect(res.body.message).is.equal('Contact not found!');
           done();
         });
     });
@@ -97,14 +97,14 @@ describe('CRUD', () => {
           done();
         });
     });
-    it(`Should return 'contact is not found'`, (done) => {
+    it(`Should return 'Contact not found'`, (done) => {
       request(server)
         .get('/contacts/another-contact')
         .end((_, res) => {
           expect(res.body).be.a('Object');
           expect(res.status).is.equal(404);
           expect(res.body.success).is.false;
-          expect(res.body.message).is.equal('Contact is not found!');
+          expect(res.body.message).is.equal('Contact not found!');
           done();
         });
     });
@@ -122,25 +122,25 @@ describe('CRUD', () => {
           done();
         });
     });
-    it(`Should return for removed contact 'contact is not found'`, (done) => {
+    it(`Should return 'Contact not found' for removed contact`, (done) => {
       request(server)
         .get('/contacts/first-contact')
         .end((_, res) => {
           expect(res.body).be.a('Object');
           expect(res.status).is.equal(404);
           expect(res.body.success).is.false;
-          expect(res.body.message).is.equal('Contact is not found!');
+          expect(res.body.message).is.equal('Contact not found!');
           done();
         });
     });
-    it(`Should return 'contact is not found'`, (done) => {
+    it(`Should return 'contact not found'`, (done) => {
       request(server)
         .get('/contacts/another-contact')
         .end((_, res) => {
           expect(res.body).be.a('Object');
           expect(res.status).is.equal(404);
           expect(res.body.success).is.false;
-          expect(res.body.message).is.equal('Contact is not found!');
+          expect(res.body.message).is.equal('Contact not found!');
           done();
         });
     });
